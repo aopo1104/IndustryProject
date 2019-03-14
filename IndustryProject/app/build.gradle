@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+// 添加插件
+apply plugin: 'com.mob.sdk'
+
+// 在MobSDK的扩展中注册SMSSDK的相关信息
+//短信
+MobSDK {
+    appKey "27fe00a0393cc"
+    appSecret "c2303f8f15e2aa31b7aca1d987c79bd9"
+    SMSSDK {}
+}
+
+android {
+    useLibrary 'org.apache.http.legacy'
+    compileSdkVersion 26
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    defaultConfig {
+        applicationId "com.example.asus.industryproject"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+/*
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a', 'x86_64'
+            universalApk true
+        }
+    }*/
+}
+
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'jp.wasabeef:glide-transformations:2.0.1'
+    implementation 'com.github.lygttpod:SuperTextView:2.1.6'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:support-v4:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.android.support:multidex:1.0.1'
+    //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
+    implementation 'com.android.support:design:24.0.0'
+    implementation 'com.google.code.gson:gson:2.6.2'
+    implementation files('libs/design-24.2.0-javadoc.jar')
+    implementation files('libs/design-24.2.0-sources.jar')
+    implementation 'org.jsoup:jsoup:1.10.2'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation files('libs/android-smart-image-view-1.0.0.jar')
+    implementation files('libs/android-async-http-1.4.8.jar')
+    implementation files('libs/eventbus-2.4.0.jar')
+    implementation files('libs/xUtils-3.1.14.jar')
+    implementation 'com.ddz.materialdesign:FloatingActionButton:1.0.4'
+    implementation 'com.android.support:cardview-v7:22.2.1'
+    compile project(':IMKit')
+    implementation files('libs/youtu-java-sdk.jar')
+}
